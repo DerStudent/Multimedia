@@ -1,8 +1,20 @@
 package de.fh.multimedia.bmp;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public class BMPStarter {
 	
 	
+	private static final String BASEPATH = "";
+	private static final String INPUTIMAGE = "";
+	
+	private static final String OUTPUTPATH = "";
+	private static final String OUTPUTIMAGE = "";
 
 	public static void main(String[] args) {
 		
