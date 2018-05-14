@@ -30,7 +30,8 @@ public class BMPStarter {
 			for (int xPixel = 0; xPixel < image.getWidth(); xPixel++) {
 				for (int yPixel = 0; yPixel < image.getHeight(); yPixel++) {
 
-					image.setRGB(xPixel, yPixel, getGrayFromRGB(image.getRGB(xPixel, yPixel)));
+					//image.setRGB(xPixel, yPixel, getGrayFromRGB(image.getRGB(xPixel, yPixel)));
+					image.setRGB(xPixel, yPixel, filter(image, xPixel, yPixel));
 				}
 			}
 		} catch (Exception e) {
@@ -60,7 +61,18 @@ public class BMPStarter {
 	}
 
 	private static int filter(BufferedImage img, int x, int y) {
-
-		return 0;
+		int result=0;
+		for( int i = x-1; i < x+1;i++) {
+			for(int j = y-1; j < y+1;j++) {
+				if(x<0||y<0) {
+					result +=0;
+				}
+				else
+				{
+					result+= img.getRGB(i, j);
+				}
+			}
+		}
+		return result;
 	}
 }
