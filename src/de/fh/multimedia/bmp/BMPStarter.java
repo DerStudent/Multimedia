@@ -22,22 +22,19 @@ public class BMPStarter {
 		
 		File input = new File(BASEPATH+INPUTIMAGE);
 		
-		int arrayRGB[][];
-		
 		BufferedImage image = null;
 		
 		try {
 			image = ImageIO.read(input);
-			arrayRGB = new int[image.getWidth()][image.getHeight()];
+			//arrayRGB = new int[image.getWidth()][image.getHeight()];
 			
 			for (int xPixel = 0; xPixel < image.getWidth(); xPixel++)
 	        {
 	            for (int yPixel = 0; yPixel < image.getHeight(); yPixel++)
 	            {
-	            	int rgbCode = image.getRGB(xPixel, yPixel);
-	            	arrayRGB[xPixel][yPixel] = rgbCode;
-	               	System.out.print(rgbCode); 
-	               	image.setRGB(xPixel, yPixel, COLOR);
+	            	int gray = getGray(new Color(image.getRGB(xPixel, yPixel)));
+	            	Color grayCol = new Color(gray,gray,gray);
+	               	image.setRGB(xPixel, yPixel, grayCol.getRGB() );
 	            }
 	            System.out.println();
 	        }
@@ -52,5 +49,15 @@ public class BMPStarter {
 			
 			e.printStackTrace();
 		}	
+	}
+	
+	private static int getGray(Color col) {
+				
+		int red = col.getRed();
+		int green = col.getGreen();
+		int blue = col.getBlue();
+		
+		return (int)((0.299*red)+(0.587*green)+(0.114*blue));
+				
 	}
 }
