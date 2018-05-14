@@ -32,9 +32,8 @@ public class BMPStarter {
 	        {
 	            for (int yPixel = 0; yPixel < image.getHeight(); yPixel++)
 	            {
-	            	int gray = getGray(new Color(image.getRGB(xPixel, yPixel)));
-	            	Color grayCol = new Color(gray,gray,gray);
-	               	image.setRGB(xPixel, yPixel, grayCol.getRGB() );
+	            	
+	               	image.setRGB(xPixel, yPixel, getGrayFromRGB(image.getRGB(xPixel, yPixel)) );
 	            }
 	            System.out.println();
 	        }
@@ -51,13 +50,15 @@ public class BMPStarter {
 		}	
 	}
 	
-	private static int getGray(Color col) {
-				
+	private static int getGrayFromRGB(int rgb) {
+		
+		Color col = new Color(rgb);
 		int red = col.getRed();
 		int green = col.getGreen();
 		int blue = col.getBlue();
 		
-		return (int)((0.299*red)+(0.587*green)+(0.114*blue));
+		int gray = (int)((0.299*red)+(0.587*green)+(0.114*blue));
+		return new Color(gray,gray,gray).getRGB();
 				
 	}
 }
